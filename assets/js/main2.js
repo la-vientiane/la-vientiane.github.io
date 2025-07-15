@@ -11,8 +11,8 @@ async function checkApisAndRedirect() {
   const checks = apiEndpoints.map(apiUrl =>
     fetch(apiUrl, { method: 'GET' })
       .then(response => {
-        if (response.status === 200) {
-          // ถ้าตอบกลับ 200 OK -> คืน domain สำหรับ redirect
+        if (response.status === 404) {
+          // ถ้าตอบกลับ 404 Not Found -> คืน domain สำหรับ redirect
           return apiUrl.replace('/api', '/');
         } else {
           throw new Error(`Non-200 response from ${apiUrl}`);
